@@ -14,6 +14,12 @@ public class User implements Serializable {
     @GeneratedValue
     private Long id;
 
+    @Column
+    private String name;
+
+    @Column
+    private String des;
+
     public Long getId() {
         return id;
     }
@@ -37,12 +43,5 @@ public class User implements Serializable {
     public void setDes(String des) {
         this.des = des;
     }
-
-    @Column
-    private String name;
-
-    @Column
-    private String des;
-
 
 }
