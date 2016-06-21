@@ -5,6 +5,5 @@ import com.gt.entity.User;
 /**
  * Created by journal on 2016/5/30.
  */
-public interface UserService {
-    User insert(User user);
+public interface UserService extends BasicService<User>{
 }

@@ -33,7 +33,7 @@ public class HelloWorldController {
     public ModelAndView cc(){
         ModelAndView mv = new ModelAndView();
         User user = new User();
-        user.setDes("aa");
+        user.setUsername("ooxx");
         User userRes = userService.insert(user);
 
         mv.addObject("message",userRes.getId() );

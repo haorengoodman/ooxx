@@ -20,12 +20,24 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository repository;
 
-    @Transactional
+    @Override
     public User insert(User user) {
-        User user1 = new User();
-        user1.setDes("xxxx");
-        repository.save(user1);
-        //int i = 1/0;
         return repository.save(user);
     }
+
+    @Override
+    public void delete(User user) {
+        repository.delete(user);
+    }
+
+    @Override
+    public User modify(User user) {
+        return repository.save(user);
+    }
+
+    @Override
+    public User find(Long id) {
+        return repository.findOne(id);
+    }
+
 }

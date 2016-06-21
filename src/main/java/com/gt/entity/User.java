@@ -2,6 +2,7 @@ package com.gt.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by journal on 2016/5/30.
@@ -10,15 +11,29 @@ import java.io.Serializable;
 @Table(name = "gt_user")
 public class User implements Serializable {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
-
     @Column
-    private String name;
-
+    private String username;
     @Column
-    private String des;
+    private String password;
+    @Column
+    private String salt;
+    @Column
+    private Boolean locked = Boolean.FALSE;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "gt_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id") )
+    private Set<Role> roles;
+
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -28,20 +43,43 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getDes() {
-        return des;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
