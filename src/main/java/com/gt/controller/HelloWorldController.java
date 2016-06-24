@@ -4,9 +4,11 @@ import com.gt.entity.User;
 import com.gt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class HelloWorldController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @RequestMapping(value = "/hello")
@@ -30,13 +32,20 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = "/cc")
+    @Transactional
     public ModelAndView cc(){
         ModelAndView mv = new ModelAndView();
         User user = new User();
-        user.setUsername("ooxx");
-        User userRes = userService.insert(user);
+        user.setUsername("a");
+        userService.insert(user);
 
-        mv.addObject("message",userRes.getId() );
+        int i=1/0;
+
+        User user2 = new User();
+        user.setUsername("b");
+        userService.insert(user2);
+
+        mv.addObject("message",user.getId() );
         mv.setViewName("hello");
         return mv;
     }

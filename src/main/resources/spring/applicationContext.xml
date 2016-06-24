@@ -88,7 +88,7 @@
 
     <!-- 用于指定持久化实现厂商类 -->
     <bean id="persistenceProvider"
-          class="org.hibernate.ejb.HibernatePersistence" />
+          class="org.hibernate.ejb.HibernatePersistence"/>
 
     <!-- 用于设置JPA实现厂商的特定属性 -->
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -106,8 +106,8 @@
     <!-- 注解式事务 -->
     <tx:annotation-driven transaction-manager="txManager" />
 
-    <!-- 启动对@AspectJ（面向切面）注解的支持 -->
-    <aop:aspectj-autoproxy />
+    <!-- 启动对@AspectJ（面向切面）注解的支持
+    <aop:aspectj-autoproxy />-->
 </beans>
 
 
