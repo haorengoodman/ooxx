@@ -1,0 +1,1 @@
+点1：springmvc配置文件和applicationContext分开。事务只能传播到service层。
