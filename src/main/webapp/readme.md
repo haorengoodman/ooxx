@@ -15,4 +15,20 @@
             <servlet-name>default</servlet-name>
             <url-pattern>*.md</url-pattern>
         </servlet-mapping>
-点3：
+点3：关于javascript代码的位置和写法。
+     1.位置。一般放在title的后面
+     2.书写方法。无论哪种方法，js代码都是在整个页面文档加载完成之后才开始执行。
+        2.1 javascript原生写法
+            <script type="text/javascript">
+                window.onload = function(){
+                    var xx = document.getElementById("one")
+                    alert(xx.firstChild.nodeValue)
+                }
+            </script>
+        2.2 jquery 写法
+            <script type="text/javascript">
+                $(function(){
+                    alert($("#one").text());
+                });
+            </script>
+点4：
