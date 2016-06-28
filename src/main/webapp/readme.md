@@ -1,4 +1,4 @@
-点1：springmvc配置文件和applicationContext分开。事务只能传播到service层。
+点1：springmvc 配置文件和 applicationContext 分开。事务只能传播到service层。
 点2：关于静态文件的访问方式问题
      1.静态文件放在 webapp/WEB-INF/ 下，用户无权限直接访问。如果需要访问，可以使用如下方式：
        <mvc:resources mapping="/jquery/**" location="/WEB-INF/jquery/"></mvc:resources>
