@@ -1,4 +1,4 @@
-package com.gt.util;
+package com.gt.shiro.util;
 
 import com.gt.entity.User;
 import org.apache.shiro.crypto.RandomNumberGenerator;
