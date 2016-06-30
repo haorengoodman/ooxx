@@ -20,10 +20,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User insert(User user) {
-        User user1 = new User();
-        user1.setUsername("c");
-        userRepository.save(user1);
-//        int i = 1/0;
 
         return userRepository.save(user);
     }

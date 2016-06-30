@@ -58,7 +58,6 @@
         <property name="persistenceProvider" ref="persistenceProvider" />
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
         <property name="jpaDialect" ref="jpaDialect" />
-        <!--<property name="packagesToScan" value="com.gt.entity" />-->
         <property name="packagesToScan">
             <array>
                 <value>com.gt.entity</value>

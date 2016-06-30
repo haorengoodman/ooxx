@@ -2,7 +2,6 @@ package com.gt.controller;
 
 import com.gt.entity.User;
 import com.gt.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;

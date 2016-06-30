@@ -1,4 +1,4 @@
-package com.gt.shiro;
+package com.gt.shiro.chapter5;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

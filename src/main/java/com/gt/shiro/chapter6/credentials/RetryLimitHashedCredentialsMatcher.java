@@ -1,4 +1,4 @@
-package com.gt.shiro.chapter5.credentials;
+package com.gt.shiro.chapter6.credentials;
 
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
@@ -6,10 +6,8 @@ import net.sf.ehcache.Element;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 
-import javax.security.auth.login.AccountLockedException;
 import java.net.URL;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -49,6 +47,5 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
             passwordRetryCache.remove(username);
         }
         return matches;
-        //return true;
     }
 }
