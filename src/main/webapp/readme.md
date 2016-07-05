@@ -31,8 +31,9 @@
                     alert($("#one").text());
                 });
             </script>
-点4：shiro的文件全部放在shiro文件夹下，以后如果不需要的话可以直接删除shiro文件目录。
-点5：web.xml 文件中配置iniShiroFilter 作为shiro的入口
+点4：添加 mvc:resources 配置静态资源访问 引发的问题：springmvc.xml文件中配置的controller 失效。
+     解决方法：添加配置项 <mvc:annotation-driven />
+点5：shiro的文件全部放在shiro文件夹下，以后如果不需要的话可以直接删除shiro文件目录。
 
 
 
