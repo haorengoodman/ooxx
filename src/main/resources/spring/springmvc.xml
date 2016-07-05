@@ -7,7 +7,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <context:annotation-config/>
+
     <context:component-scan base-package="com.gt.controller"/>
+    <context:component-scan base-package="com.gt.shiro.chapter7.controller"/>
 
     <mvc:resources mapping="/jquery/**" location="/WEB-INF/jquery/"></mvc:resources>
     <mvc:resources mapping="/jquery-ui-1.11.4/**" location="/WEB-INF/jquery-ui-1.11.4/"></mvc:resources>

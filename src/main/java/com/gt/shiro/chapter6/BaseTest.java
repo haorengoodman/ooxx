@@ -6,9 +6,7 @@ import com.gt.entity.User;
 import com.gt.service.PermissionService;
 import com.gt.service.RoleService;
 import com.gt.service.UserService;
-import com.gt.service.impl.PermissionServiceImpl;
-import com.gt.service.impl.RoleServiceImpl;
-import com.gt.service.impl.UserServiceImpl;
+import com.gt.shiro.chapter6.util.JdbcTemplateUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
@@ -17,7 +15,7 @@ import org.apache.shiro.util.Factory;
 import org.apache.shiro.util.ThreadContext;
 import org.junit.After;
 import org.junit.Before;
-
+import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,9 +26,12 @@ import java.util.Set;
  */
 public abstract class BaseTest {
 
-    protected PermissionService permissionService = new PermissionServiceImpl();
-    protected RoleService roleService = new RoleServiceImpl();
-    protected UserService userService = new UserServiceImpl();
+    @Resource
+    protected PermissionService permissionService;
+    @Resource
+    protected RoleService roleService ;
+    @Resource
+    protected UserService userService;
 
     protected String password = "123";
 
@@ -46,13 +47,12 @@ public abstract class BaseTest {
 
     @Before
     public void setUp() {
-        /*
-        JdbcTemplateUtils.jdbcTemplate().update("delete from sys_users");
-        JdbcTemplateUtils.jdbcTemplate().update("delete from sys_roles");
-        JdbcTemplateUtils.jdbcTemplate().update("delete from sys_permissions");
-        JdbcTemplateUtils.jdbcTemplate().update("delete from sys_users_roles");
-        JdbcTemplateUtils.jdbcTemplate().update("delete from sys_roles_permissions");
-        */
+
+        JdbcTemplateUtils.jdbcTemplate().update("delete from gt_user_role");
+        JdbcTemplateUtils.jdbcTemplate().update("delete from gt_role_permission");
+        JdbcTemplateUtils.jdbcTemplate().update("delete from gt_user");
+        JdbcTemplateUtils.jdbcTemplate().update("delete from gt_role");
+        JdbcTemplateUtils.jdbcTemplate().update("delete from gt_permission");
 
         //1、新增权限
         p1 = new Permission("user:create", "用户模块新增", Boolean.TRUE);
@@ -74,10 +74,13 @@ public abstract class BaseTest {
         permissionsFor2.add(p1);
         permissionsFor2.add(p2);
 
-        r1.setPermissions(permissionsFor1);
-        r2.setPermissions(permissionsFor2);
         roleService.insert(r1);
         roleService.insert(r2);
+
+        r1.setPermissions(permissionsFor1);
+        r2.setPermissions(permissionsFor2);
+        roleService.modify(r1);
+        roleService.modify(r2);
 
         /*
         //3、关联角色-权限
@@ -101,13 +104,14 @@ public abstract class BaseTest {
             roleSet = new HashSet<>();
         }
         roleSet.add(r1);
-        u1.setRoles(roleSet);
 
         userService.insert(u1);
         userService.insert(u2);
         userService.insert(u3);
         userService.insert(u4);
 
+        u1.setRoles(roleSet);
+        userService.modify(u1);
         /*
         //5、关联用户-角色
         userService.correlationRoles(u1.getId(), r1.getId());

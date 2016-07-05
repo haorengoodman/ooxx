@@ -6,17 +6,22 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * <p>User: Zhang Kaitao
  * <p>Date: 14-1-28
  * <p>Version: 1.0
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(value = {"classpath*:spring/applicationContext.xml", "classpath*:spring/springmvc.xml"})
 public class UserRealmTest extends BaseTest {
-    
+
 
     @Test
-      public void testLoginSuccess() {
+    public void testLoginSuccess() {
         login("classpath:shiro_chapter6/shiro.ini", u1.getUsername(), password);
         Assert.assertTrue(subject().isAuthenticated());
     }

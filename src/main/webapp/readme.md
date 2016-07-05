@@ -32,3 +32,7 @@
                 });
             </script>
 点4：shiro的文件全部放在shiro文件夹下，以后如果不需要的话可以直接删除shiro文件目录。
+点5：web.xml 文件中配置iniShiroFilter 作为shiro的入口
+
+
+
