@@ -18,16 +18,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- 配置spring管理OpenEntityManagerInViewFilter;解决懒加载问题 -->
-    <filter>
-        <filter-name>hibernateFilter</filter-name>
-        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>hibernateFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
+    <!-- springmvc config start -->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -42,8 +33,18 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!-- springmvc config start -->
 
-    <!-- spring Web MVC框架提供了org.springframework.web.filter.CharacterEncodingFilter用于解决POST方式造成的中文乱码问题 -->
+    <!-- 配置spring管理OpenEntityManagerInViewFilter;解决懒加载问题 -->
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 中文乱码过滤器 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -57,7 +58,33 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 使用Tomcat的defaultServlet来处理静态文件， dispatcherServlet 不拦截以下后缀文件
+    <!-- shiro config start -->
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>shiroEnvironmentClass</param-name>
+        <param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>
+    </context-param>
+    <context-param>
+        <param-name>shiroConfigLocations</param-name>
+        <!--
+        <param-value>classpath:shiro_chapter7/shiro-basicfilterlogin.ini</param-value>
+        <param-value>classpath:shiro_chapter7/shiro-formfilterlogin.ini</param-value>
+         -->
+        <param-value>classpath:shiro_chapter7/shiro.ini</param-value>
+    </context-param>
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- shiro config end -->
+
+    <!-- 使用Tomcat的defaultServlet来处理静态文件， dispatcherServlet 不拦截以下后缀文件 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.md</url-pattern>
@@ -69,6 +96,6 @@
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list> -->
+    </welcome-file-list>
 
 </web-app>

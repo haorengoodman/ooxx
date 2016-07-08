@@ -34,6 +34,19 @@
 点4：添加 mvc:resources 配置静态资源访问 引发的问题：springmvc.xml文件中配置的controller 失效。
      解决方法：添加配置项 <mvc:annotation-driven />
 点5：shiro的文件全部放在shiro文件夹下，以后如果不需要的话可以直接删除shiro文件目录。
-
-
+点6：<%@ page language="java"  pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
+      第一个编码 pageEncoding="UTF-8" 是针对 jsp 页面的编码。就是在我们的操作系统中jsp源文件的编码。容器会检测这个值对源文件进行编译。
+      第二个编码contentType="text/html;charset=UTF-8" 是指jsp 输出结果的编码，同时浏览器会将编码设成相应的编码，当浏览器发送请求时，会使用此编码对发送的内容编码。
+点7：插件启动web项目
+     <plugin>
+              <groupId>org.mortbay.jetty</groupId>
+              <artifactId>jetty-maven-plugin</artifactId>
+              <version>8.1.8.v20121106</version>
+              <configuration>
+                  <webAppConfig>
+                      <contextPath>/${project.build.finalName}</contextPath>
+                  </webAppConfig>
+              </configuration>
+          </plugin>
+          mvn jetty:run
 
