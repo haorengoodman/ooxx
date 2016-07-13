@@ -66,3 +66,5 @@
      )
      //@ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL)
      private Set<Permission> permissions;
+点9：hibernate 懒加载异常  fetch = FetchType.EAGER
+     貌似 OpenSessionInViewFilter 并没有生效
