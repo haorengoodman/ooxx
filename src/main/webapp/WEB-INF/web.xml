@@ -69,10 +69,10 @@
     <context-param>
         <param-name>shiroConfigLocations</param-name>
         <!--
-        <param-value>classpath:shiro_chapter7/shiro-basicfilterlogin.ini</param-value>
+        <param-value>classpath:shiro_chapter7/shiro.ini</param-value>
         <param-value>classpath:shiro_chapter7/shiro-formfilterlogin.ini</param-value>
          -->
-        <param-value>classpath:shiro_chapter7/shiro.ini</param-value>
+        <param-value>classpath:shiro_chapter7/shiro-basicfilterlogin.ini</param-value>
     </context-param>
     <filter>
         <filter-name>shiroFilter</filter-name>

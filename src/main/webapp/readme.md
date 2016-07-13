@@ -49,4 +49,20 @@
               </configuration>
           </plugin>
           mvn jetty:run
-
+点8：hibernate 多对多 的 双向关联 & 单向关联 配置
+     Permission.java
+     @ManyToMany(cascade = CascadeType.ALL)
+     @JoinTable(name = "gt_role_permission",
+             joinColumns = @JoinColumn(name = "permission_Id"),
+             inverseJoinColumns = @JoinColumn(name = "role_id")
+     )
+     private Set<Role> roles;
+     下面： 配置了有两种，注释掉的是 单项关联，未注释的是双向关联.
+     Role.java
+     @ManyToMany(cascade = CascadeType.ALL)
+     @JoinTable(name = "gt_role_permission",
+             joinColumns = @JoinColumn(name = "role_id"),
+             inverseJoinColumns = @JoinColumn(name = "permission_Id")
+     )
+     //@ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL)
+     private Set<Permission> permissions;
