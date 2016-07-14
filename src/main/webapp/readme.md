@@ -67,4 +67,7 @@
      //@ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL)
      private Set<Permission> permissions;
 点9：hibernate 懒加载异常  fetch = FetchType.EAGER
-     貌似 OpenSessionInViewFilter 并没有生效
+     貌似 OpenSessionInViewFilter 并没有生效,目前已经去除该 filter
+点10： shiro 异常拦截 例如：未登录异常时 可以使用注解：@ExceptionHandler({UnauthorizedException.class})
+                     来捕捉异常。避免异常抛给用户。
+
